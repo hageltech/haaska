@@ -9,7 +9,7 @@ BUILD_DIR=build
 haaska.zip: haaska.py config/*
 	mkdir -p $(BUILD_DIR)
 	cp $^ $(BUILD_DIR)
-	pip install -t $(BUILD_DIR) requests
+	pip install --system -t $(BUILD_DIR) requests
 	cd $(BUILD_DIR); zip ../$@ -r *
 
 .PHONY: deploy
