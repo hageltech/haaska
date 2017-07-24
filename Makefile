@@ -5,11 +5,12 @@ SHELL := /bin/bash
 FUNCTION_NAME=haaska
 
 BUILD_DIR=build
+PIP_SYSTEM:=$(shell pip install --help | grep -q -- --system && echo --system)
 
 haaska.zip: haaska.py config/*
 	mkdir -p $(BUILD_DIR)
 	cp $^ $(BUILD_DIR)
-	pip install --system -t $(BUILD_DIR) requests
+	pip install $(PIP_SYSTEM) -t $(BUILD_DIR) requests
 	cd $(BUILD_DIR); zip ../$@ -r *
 
 .PHONY: deploy
